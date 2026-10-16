@@ -1,0 +1,154 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contacto - La Cafetería{% endblock %}
+
+{% block content %}
+<!-- Cabecera de Contacto -->
+<div class="row mb-5 text-center">
+    <div class="col-lg-12">
+        <h1 class="fw-bold display-5 mb-2" style="color: #2c1810; font-family: serif;">
+            Ponte en Contacto con <span style="color: #a0522d;">Nosotros</span> <i class="fa-solid fa-mug-hot ms-1"></i>
+        </h1>
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <hr class="w-25 border-secondary opacity-25">
+            <span class="mx-3 text-secondary"><i class="fa-solid fa-coffee"></i></span>
+            <hr class="w-25 border-secondary opacity-25">
+        </div>
+        <p class="text-muted" style="font-size: 1.1rem;">
+            ¿Tienes alguna pregunta, sugerencia o deseas hacer un pedido especial?<br>
+            <strong style="color: #a0522d;">¡Nos encantaría escucharte!</strong>
+        </p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <!-- Columna Izquierda: Información de Contacto -->
+    <div class="col-lg-5 mb-4">
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+            <!-- Encabezado oscuro de la tarjeta -->
+            <div class="p-4 text-white" style="background-color: #1a120b;">
+                <h3 class="h5 fw-bold mb-0 d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot me-2 text-warning"></i> Información de Contacto
+                </h3>
+            </div>
+            <!-- Cuerpo de la tarjeta -->
+            <div class="p-4 bg-white d-flex flex-column justify-content-between">
+                <div>
+                    <!-- Dirección -->
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="rounded-circle p-2 me-3 text-center d-flex align-items-center justify-content-center" style="background-color: #faebd7; color: #a0522d; min-width: 40px; height: 40px;">
+                            <i class="fa-solid fa-map-pin"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" style="color: #2c1810;">Dirección</h6>
+                            <p class="text-muted small mb-0">Av. Universitaria y Burgués<br>Portoviejo, Manabí</p>
+                        </div>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="rounded-circle p-2 me-3 text-center d-flex align-items-center justify-content-center" style="background-color: #faebd7; color: #a0522d; min-width: 40px; height: 40px;">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" style="color: #2c1810;">Teléfono</h6>
+                            <p class="text-muted small mb-0">+593 99 123 4567</p>
+                        </div>
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="rounded-circle p-2 me-3 text-center d-flex align-items-center justify-content-center" style="background-color: #faebd7; color: #a0522d; min-width: 40px; height: 40px;">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" style="color: #2c1810;">Correo Electrónico</h6>
+                            <p class="text-muted small mb-0">lacafeteriaContacto@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Horarios de atención -->
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="rounded-circle p-2 me-3 text-center d-flex align-items-center justify-content-center" style="background-color: #faebd7; color: #a0522d; min-width: 40px; height: 40px;">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" style="color: #2c1810;">Horarios de atención</h6>
+                            <p class="text-muted small mb-0">
+                                Lunes a Sábado: 7:30 AM – 8:00 PM<br>
+                                Domingos: 8:00 AM – 2:00 PM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes Sociales y aviso -->
+                <div class="p-3 rounded-3 mt-3" style="background-color: #fdfbf7; border: 1px solid #f3e5dc;">
+                    <p class="text-muted small mb-3 text-center">
+                        ¡Síguenos en nuestras redes sociales como <br><strong style="color: #2c1810;">@LaCafeteriaProto</strong> para enterarte de nuevas promociones!
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 fs-5">
+                        <a href="https://instagram.com" target="_blank" class="social-icon text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none shadow-sm" style="width: 40px; height: 40px; background-color: #1a120b;" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="social-icon text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none shadow-sm" style="width: 40px; height: 40px; background-color: #1a120b;" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="social-icon text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none shadow-sm" style="width: 40px; height: 40px; background-color: #1a120b;" title="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" class="social-icon text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none shadow-sm" style="width: 40px; height: 40px; background-color: #1a120b;" title="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Columna Derecha: Formulario de Mensaje -->
+    <div class="col-lg-6 mb-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+            <h3 class="h4 fw-bold mb-4" style="color: #2c1810;">Envíanos un Mensaje</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label text-secondary small fw-bold">Tu Nombre</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0 rounded-start-pill ps-3 text-muted"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" class="form-control rounded-end-pill py-2 border-light bg-light" id="name" placeholder="Ej. Luis Zambrano" required aria-label="Tu Nombre">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label text-secondary small fw-bold">Correo Electrónico</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0 rounded-start-pill ps-3 text-muted"><i class="fa-solid fa-at"></i></span>
+                        <input type="email" class="form-control rounded-end-pill py-2 border-light bg-light" id="email" placeholder="correo_personal@gmail.com" required aria-label="Correo Electrónico">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="form-label text-secondary small fw-bold">Mensaje</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0 rounded-start-top-4 ps-3 text-muted pt-3 align-items-start"><i class="fa-solid fa-pen"></i></span>
+                        <textarea class="form-control rounded-end-4 py-3 border-light bg-light" id="message" rows="5" placeholder="Escribe tu mensaje aquí..." required aria-label="Mensaje"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn text-white w-100 py-3 rounded-pill fw-bold shadow-sm" style="background: linear-gradient(135deg, #8b4513, #5c2c16);">
+                    Enviar Mensaje <i class="fa-solid fa-paper-plane ms-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos CSS para la animación de los iconos -->
+<style>
+    .social-icon {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .social-icon:hover {
+        transform: translateY(-5px) scale(1.1);
+        background-color: #8b4513 !important;
+    }
+</style>
+{% endblock %}

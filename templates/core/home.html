@@ -1,0 +1,106 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inicio - La Cafetería{% endblock %}
+
+{% block content %}
+<!-- Hero Section con Estilo y JavaScript -->
+<div class="row align-items-center py-5">
+    <div class="col-lg-6 mb-4 mb-lg-0">
+        <!-- Saludo dinámico generado por JavaScript -->
+        <span id="saludo-dinamico" class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold" style="font-size: 0.9rem;">
+            ¡Bienvenido a La Cafetería!
+        </span>
+
+        <h1 class="display-4 fw-bold mb-3" style="color: #2c1810; font-family: serif;">
+            El mejor café artesanal para tus momentos especiales.
+        </h1>
+
+        <p class="text-muted lead mb-4">
+            Disfruta de granos seleccionados con amor, repostería recién horneada y un ambiente cálido diseñado para ti.
+        </p>
+
+        <div class="d-flex gap-3">
+            <a href="{% url 'services' %}" class="btn text-white px-4 py-3 rounded-pill fw-bold shadow-sm" style="background-color: #5c2c16;">
+                <i class="fa-solid fa-mug-hot me-2"></i> Ver Nuestros Servicios
+            </a>
+            <a href="{% url 'contact' %}" class="btn btn-outline-dark px-4 py-3 rounded-pill fw-bold">
+                Contáctanos
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-6 text-center">
+        <!-- Imagen elegante de cafetería -->
+        <div class="p-3 bg-white shadow-sm rounded-4 border">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Café de especialidad" class="img-fluid rounded-3" style="max-height: 400px; width: 100%; object-fit: cover;">
+
+            <!-- Contador interactivo con JS -->
+            <div class="mt-3 p-3 rounded-3 text-white" style="background-color: #1a120b;">
+                <p class="mb-1 small text-warning">Contador de felicidad de hoy:</p>
+                <h4 id="contador-tazas" class="fw-bold mb-0">0 Tazas servidas con amor</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Frases rotativas de café - Efecto JavaScript -->
+<div class="row mt-5 py-4 bg-white rounded-4 shadow-sm border text-center">
+    <div class="col-12">
+        <h5 class="text-uppercase text-secondary small fw-bold mb-2">Frase del día para ti</h5>
+        <p id="frase-cafe" class="fs-5 fst-italic mb-0" style="color: #5c2c16;">
+            "El buen café, como la buena amistad, debe ser fuerte, cálido y de mucho cuerpo."
+        </p>
+    </div>
+</div>
+
+<!-- SCRIPTS DE JAVASCRIPT PARA LA INTERACTIVIDAD -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 1. Saludo dinámico según la hora del sistema
+        const fecha = new Date();
+        const hora = fecha.getHours();
+        const spanSaludo = document.getElementById("saludo-dinamico");
+
+        if (hora >= 6 && hora < 12) {
+            spanSaludo.innerHTML = "¡Buenos días! Comienza tu mañana con energía";
+        } else if (hora >= 12 && hora < 18) {
+            spanSaludo.innerHTML = "¡Buenas tardes! Disfruta de un buen café con nosotros";
+        } else {
+            spanSaludo.innerHTML = "¡Buenas noches! Relájate con nuestra repostería artesanal";
+        }
+
+        // 2. Simulación de contador de tazas que aumenta de forma animada
+        let tazas = 124;
+        const contadorElemento = document.getElementById("contador-tazas");
+
+        setInterval(() => {
+            tazas += Math.floor(Math.random() * 3); // Aumenta aleatoriamente
+            contadorElemento.innerHTML = `☕ +${tazas} Tazas servidas hoy en Portoviejo`;
+        }, 5000); // Cambia cada 5 segundos
+
+        // 3. Rotador de frases de café cada 7 segundos
+        const frases = [
+            "\"El buen café, como la buena amistad, debe ser fuerte, cálido y de mucho cuerpo.\"",
+            "\"La vida es demasiado corta para beber mal café.\"",
+            "\"Un día sin café es como... bueno, no tengo idea de cómo es.\"",
+            "\"El café es un bálsamo para el corazón y el espíritu.\""
+        ];
+
+        let indexFrase = 0;
+        const elementoFrase = document.getElementById("frase-cafe");
+
+        setInterval(() => {
+            indexFrase = (indexFrase + 1) % frases.length;
+            elementoFrase.style.opacity = 0;
+            setTimeout(() => {
+                elementoFrase.innerHTML = frases[indexFrase];
+                elementoFrase.style.opacity = 1;
+            }, 300);
+        }, 7000);
+
+        // Transición suave para las frases
+        elementoFrase.style.transition = "opacity 0.3s ease-in-out";
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Blog y Novedades - La Cafetería{% endblock %}
+
+{% block content %}
+<!-- Cabecera del Blog -->
+<div class="row mb-5 text-center">
+    <div class="col-lg-12">
+        <h1 class="fw-bold display-5 mb-2" style="color: #2c1810; font-family: serif;">
+            Nuestro Blog y Novedades <i class="fa-solid fa-mug-hot text-warning ms-1"></i>
+        </h1>
+        <p class="text-muted" style="font-size: 1.1rem;">
+            Descubre historias, recetas y consejos sobre el mundo del café.
+        </p>
+        
+        <!-- Buscador de artículos en tiempo real -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="input-group shadow-sm rounded-pill overflow-hidden border bg-white">
+                    <span class="input-group-text bg-white border-0 ps-3 text-muted"><i class="fa-solid fa-search"></i></span>
+                    <input type="text" id="buscador-blog" class="form-control border-0 py-2 shadow-none" placeholder="Busca un artículo (ej. Latte Art, Grano)..." aria-label="Buscar artículos">
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de Filtro por Categoría -->
+        <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+            <button class="btn btn-dark btn-sm rounded-pill px-3 active-filtro" onclick="filtrarCategoria('todos', this)">Todas</button>
+            <button class="btn btn-outline-dark btn-sm rounded-pill px-3" onclick="filtrarCategoria('consejos de barista', this)">Consejos de Barista</button>
+            <button class="btn btn-outline-dark btn-sm rounded-pill px-3" onclick="filtrarCategoria('recetas', this)">Recetas</button>
+            <button class="btn btn-outline-dark btn-sm rounded-pill px-3" onclick="filtrarCategoria('noticias y eventos', this)">Noticias y Eventos</button>
+        </div>
+    </div>
+</div>
+
+<!-- Contenedor de Entradas-->
+<div class="row row-cols-1 row-cols-md-3 g-4" id="contenedor-posts">
+    {% for post in posts %}
+    <div class="col tarjeta-post" data-titulo="{{ post.title|lower }}" data-categorias="{% for cat in post.categories.all %}{{ cat.name|lower }} {% endfor %}">
+        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden blog-card-hover" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            {% if post.image %}
+            <div style="height: 220px; overflow: hidden;" class="position-relative">
+                <img src="{{ post.image.url }}" class="w-100 h-100 object-fit-cover" alt="{{ post.title }}">
+            </div>
+            {% endif %}
+            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="h5 fw-bold mb-2" style="color: #2c1810;">{{ post.title }}</h3>
+                    <p class="text-muted small mb-3">
+                        <i class="fa-regular fa-user me-1"></i> Por <strong>{{ post.author.email }}</strong> el {{ post.published|date:"d M Y" }}
+                    </p>
+                    <p class="text-secondary small mb-4">{{ post.content|truncatechars:120 }}</p>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        {% for category in post.categories.all %}
+                        <span class="badge rounded-pill text-bg-secondary fw-normal small me-1">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="border-top pt-3 text-end">
+                        <a href="#" class="btn btn-sm rounded-pill px-3 text-white fw-bold text-decoration-none" style="background-color: #5c2c16;">
+                            Leer artículo <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="text-muted fs-5">No hay entradas de blog publicadas todavía.</p>
+        <a href="/admin/" class="btn text-white px-4 py-2 rounded-pill mt-2" style="background-color: #1a120b;">Ir al Panel Admin</a>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Estilos CSS personalizados -->
+<style>
+    .blog-card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 1rem 2rem rgba(0,0,0,.1) !important;
+    }
+    #buscador-blog:focus {
+        background-color: #ffffff !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+</style>
+
+<!-- Script de JavaScript para interactividad -->
+<script>
+    // 1. Buscador instantáneo por título
+    document.getElementById("buscador-blog").addEventListener("keyup", function() {
+        let texto = this.value.toLowerCase();
+        let posts = document.querySelectorAll(".tarjeta-post");
+
+        posts.forEach(function(post) {
+            let titulo = post.getAttribute("data-titulo");
+            if (titulo.includes(texto)) {
+                post.style.display = "block";
+            } else {
+                post.style.display = "none";
+            }
+        });
+    });
+
+    // 2. Filtro por categorías mediante botones
+    function filtrarCategoria(categoria, boton) {
+        // Cambiar estilo activo de los botones
+        document.querySelectorAll("button[onclick^='filtrarCategoria']").forEach(btn => {
+            btn.classList.remove("btn-dark");
+            btn.classList.add("btn-outline-dark");
+        });
+        boton.classList.remove("btn-outline-dark");
+        boton.classList.add("btn-dark");
+
+        let posts = document.querySelectorAll(".tarjeta-post");
+
+        posts.forEach(function(post) {
+            let categoriasPost = post.getAttribute("data-categorias");
+            if (categoria === 'todos' || categoriasPost.includes(categoria)) {
+                post.style.display = "block";
+            } else {
+                post.style.display = "none";
+            }
+        });
+    }
+</script>
+{% endblock %}
